@@ -28,7 +28,7 @@ With this package is installed in the activated enrivonment, it can be called th
 
 Detailed usage goes as follows:
 ```bash
-usage: __main__.py [-h] [--location LAT LONG] [--max-distance MAX_DISTANCE] [--vaccines [VACCINES [VACCINES ...]]] [--depts [DEPTS [DEPTS ...]]]
+usage: __main__.py [-h] [--location LAT LONG] [--max-distance MAX_DISTANCE] [--vaccines [VACCINES [VACCINES ...]]] [--depts [DEPTS [DEPTS ...]]] [--logs LOGS]
 
 Fetch ViteMaDose data and find appointments within 24h around you.
 
@@ -41,9 +41,17 @@ optional arguments:
                         Vaccines to look for. P=Pfizer-BioNTech; M=Moderna; AZ=AstraZeneca; J=Janssen. Default: all.
   --depts [DEPTS [DEPTS ...]]
                         Numbers of departments to look for vaccines in (add 0 before single-digit depts. e.g. 01 instead of 1). Default: 01 (Ain) + neighbouring departments.
+  --logs LOGS           The level of logging messages, either capitalized or not. Can be 'INFO', 'DEBUG' or 'TRACE'. Defaults to 'INFO'.
 ```
 
-The script will fetch the latest Vitemadose data and output the suitable appointments in a formatted table in the terminal.
+An example use would then be:
+```bash
+python -m vaccibot --location 46.2440083 6.0253162 --max-distance 35 --vaccines P M AZ --depts 01 38 73
+```
+
+The script will fetch the latest Vitemadose data and output the suitable appointments in formatted tables in the terminal.
+If no appointments match your criteria, no results table will be shown.
+For additional information during the search, you can move the logging level to `DEBUG` or even `TRACE` through the `--logs` flag.
 
 ## License
 

@@ -4,11 +4,13 @@ from loguru import logger
 from rich.console import Console, RenderGroup
 from rich.panel import Panel
 
+from vaccibot.constants import LOGURU_FORMAT
+from vaccibot.parsing import ARGS
 from vaccibot.process import retrieve_all_suitable_appointments
 from vaccibot.render import make_department_table
 
 logger.remove()
-logger.add(sys.stdout, level="INFO")
+logger.add(sys.stdout, level=f"{ARGS.logs.upper()}", format=LOGURU_FORMAT)
 
 
 @logger.catch()

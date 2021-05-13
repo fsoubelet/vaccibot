@@ -56,7 +56,10 @@ def find_centers_for_department(department: str) -> List[AppointmentMatch]:
         next_appointment_time = pendulum.parse(center["prochain_rdv"])
 
         if next_appointment_time.diff(now_datetime).in_hours() <= 24:
-            logger.debug(f"'{center['nom']}' has an appointment, checking vaccines availability and location")
+            logger.debug(
+                f"'{center['nom']}' has an appointment in the next 24h, "
+                f"checking vaccines availability and location"
+            )
             vaccine_types = center["vaccine_type"]
             location = (center["location"]["latitude"], center["location"]["longitude"])
             distance_km = round(distance(location, USER_LOCATION).km)
@@ -64,6 +67,7 @@ def find_centers_for_department(department: str) -> List[AppointmentMatch]:
             if (distance_km <= MAX_DISTANCE_KM) and any(
                 vaccine in SELECTED_VACCINES for vaccine in vaccine_types
             ):
+                logger.trace(f"Appointment matches demanded criteria, adding to results")
                 suitable_appointments.append(
                     AppointmentMatch(
                         center_name=center["nom"],
@@ -74,6 +78,8 @@ def find_centers_for_department(department: str) -> List[AppointmentMatch]:
                         url=center["url"],
                     )
                 )
+            else:
+                logger.trace(f"The appointment did not match the demanded criteria")
     return suitable_appointments
 
 

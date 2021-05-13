@@ -38,7 +38,14 @@ VACCIBOT_PARSER.add_argument(
     type=str,
     nargs="*",
     help="Numbers of departments to look for vaccines in (add 0 before single-digit depts. e.g. 01 "
-         "instead of 1). Default: 01 (Ain) + neighbouring departments.",
+    "instead of 1). Default: 01 (Ain) + neighbouring departments.",
     default=DEFAULT_DEPARTMENTS,
+)
+VACCIBOT_PARSER.add_argument(
+    "--logs",
+    type=str,
+    help="The level of logging messages, either capitalized or not. Can be 'INFO', 'DEBUG' or 'TRACE'. "
+    "Defaults to 'INFO'.",
+    default="INFO",
 )
 ARGS = VACCIBOT_PARSER.parse_args()
