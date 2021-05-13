@@ -12,7 +12,7 @@ This code is compatible with `Python 3.7+`, but is not deployed to `PyPI`.
 You will find a source distribution and wheels in the repository's releases tab.
 One can install from the wheel with
 ```bash
-pip install vaccibot-0.1.0-py3-none-any.whl
+pip install vaccibot-0.2.0-py3-none-any.whl
 ```
 
 Otherwise, you can clone this repository and install with Poetry through:
